@@ -4,8 +4,8 @@
 > - **File Naming:**  
 >   - Use capital letters and underscores only.  
 >   - Start filenames with `unit_<filename>_v_<version>_<description>.<ext>`.  
->   - Example: `unit_icp10111_barometric_pressure_sensor_v_1_0_0.png`
->   - Schematic: `schematic_v_<version>_<description>.<ext>` (e.g., `schematic_v_1_0_0_icp10111_barometric_pressure_sensor.png`)
+>   - Example: `unit_top_v_1_1_0_pdm_ics_41350_mems_microphone.png`
+>   - Schematic: `schematic_v_<version>_<description>.<ext>` (e.g., `schematic_v_1_1_0_pdm_ics_41350_mems_microphone.png`)
 >   - Topology: `unit_topology_v_<version>_<description>.<ext>`
 >   - Dimensions: `unit_dimension_v_<version>_<description>.<ext>`
 > 
@@ -22,69 +22,118 @@
 # Hardware
 
 <div align="center">
-<a href="{{schematic_url}}"><img src="resources/Schematics_icon.jpg?raw=false" width="200px"><br/>Schematic</a>
+<img src="resources/Schematics_icon.jpg?raw=false" width="200px" alt="Schematic resource"><br/>
+Schematic pending verification
 </div>
+
+The V1.1 artwork identifies this board as a DevLab PDM microphone module based
+on the ICS-41350. The manufacturing BOM identifies the following principal
+parts; their component ratings must not be treated as complete module ratings.
+
+| Ref. | BOM identification | Role |
+|---|---|---|
+| MK1 | ICS-41350 | Bottom-port PDM MEMS microphone |
+| U3 | AP2112K-3.3TRG1 | Fixed 3.3 V LDO regulator |
+| D2 | NSR0320MW2T1G | Schottky diode in the power section |
+| D1 | 16-213/S2C-BM2P1VY/3T(XY) | Orange indicator LED |
+| J1 | Generic male header, 1×6, 2.54 mm | Edge/header connection |
+| J2 | HCZZ0032-4, 4-position, 1.0 mm pitch | Right-angle board connector |
+| C8, C9 | 1 µF, 6.3 V, X5R | Power-section capacitors |
+| C6 | 100 nF | Microphone decoupling capacitor |
+| C1 | 200 pF, C0G | Signal capacitor |
+| R1 | 4.7 kΩ | Resistor |
+| R2, R3 | 10 kΩ | Resistors |
+| R5 | 0 Ω | Configuration resistor |
+
+The BOM also lists a four-pin, 1.0 mm-pitch QWIIC harness. Compatibility with
+J2 and the cable orientation are pending validation; the harness entry does
+not by itself establish connector compatibility.
 
 ## Pinout
 
 <div align="center">
-    <a href="#"><img src="resources/unit_pinout_v_0_0_1_ue0094_icp10111_barometric_pressure_sensor_en.jpg" width="500px"><br/>Pinout</a>
-    <br/>
-    <br/>
-    <br/>
-    
+<img src="resources/unit_top_v_1_1_0_pdm_ics_41350_mems_microphone.png" width="500px" alt="V1.1 top artwork with PDM microphone pin labels"><br/>
+Pin labels visible in the V1.1 top artwork
 
-| Pin Label | Function    | Notes                             |
-|-----------|-------------|-----------------------------------|
-| VCC       | Power Supply| 3.3V or 5V                       |
-| GND       | Ground      | Common ground for all components  |
+| Pin Label | Direction | Function | Validation note |
+|---|---|---|---|
+| `GND` | Power | Common ground | Artwork-confirmed |
+| `VIN` | Power input | Input to the module power section | Allowed range pending schematic verification |
+| `VSYS` | Power | Module system rail | Electrical behavior pending schematic verification |
+| `CLK` | Input | PDM clock input | Sensor clock modes are listed below; module-level validation is pending |
+| `DATA` | Output | PDM microphone data | Artwork-confirmed signal name |
+| `CH` | Input | Microphone channel selection | Low/right and high/left apply to the ICS-41350 `SELECT` pin; module mapping pending schematic verification |
 
 </div>
+
+### ICS-41350 clock-selected modes
+
+These are sensor specifications from the ICS-41350 datasheet, not independently
+validated module ratings.
+
+| ICS-41350 mode | Clock frequency |
+|---|---:|
+| Sleep | Below 200 kHz |
+| Low power | 400 to 800 kHz |
+| Standard | 1.0 to 3.3 MHz |
+| High performance | 4.1 to 4.8 MHz |
 
 ## Dimensions
 
-<div align="center">
-<a href="./resources/unit_dimension_v_1_0_0_icp10111_barometric_pressure_sensor.png"><img src="./resources/unit_dimension_v_1_0_0_icp10111_barometric_pressure_sensor.png" width="500px"><br/> Dimensions</a>
-</div>
+A controlled board drawing and mounting coordinates are not available.
+Dimensions are pending validation and must not be scaled from the rendered
+artwork.
 
 ## Topology
 
-<div align="center">
+The BOM confirms an ICS-41350 microphone, AP2112K-3.3TRG1 regulator, Schottky
+diode, decoupling capacitors, indicator LED, and resistors. Their exact power
+path and configuration connections are pending schematic verification.
 
 <div align="center">
-<a href="./resources/unit_topology_V_0_0_1_ue0099_Sensor_Touch.png"><img src="./resources/unit_topology_V_0_0_1_ue0099_Sensor_Touch.png" width="500px"><br/> Topology</a>
-<br/>
-<br/>
-<br/>
-
-| Ref. | Description                              |
-|------|------------------------------------------|
-| IC1  | {{sensor_description}}                   |
-| L1   | Power On LED                             |
-| U1   | {{regulator_description}}                | 
-| JP1  | 2.54 mm Castellated Holes                |
-| J1   | QWIIC Connector (JST 1 mm pitch) for I2C |
-
+<img src="resources/unit_btm_v_1_1_0_pdm_ics_41350_mems_microphone.png" width="500px" alt="V1.1 bottom artwork"><br/>
+V1.1 bottom artwork
 </div>
 
 ## Pin & Connector Layout
-| Pin   | Voltage Level | Function                                                  |
-|-------|---------------|-----------------------------------------------------------|
-| VCC   | 3.3 V – 5.5 V | Provides power to the on-board regulator and sensor core. |
-| GND   | 0 V           | Common reference for power and signals.                   |
-| SDA   | 1.8 V to VCC  | Serial data line for I²C communications.                  |
-| SCL   | 1.8 V to VCC  | Serial clock line for I²C communications.                 |
 
-> **Note:** The module also includes a Qwiic/STEMMA QT connector carrying the same four signals (VCC, GND, SDA, SCL) for effortless daisy-chaining.
+| Connection | Visible signals | Notes |
+|---|---|---|
+| J1 / edge row | `GND`, `VIN`, `VSYS`, `CLK`, `DATA`, `CH` | Six positions shown by the artwork and BOM |
+| J2 | `GND`, `VSYS`, `DATA`, `CLK` | Four contacts shown in the top artwork; pin numbering and cable orientation pending validation |
+
+The bottom artwork also labels `CH SELECTION L/R` and `LED ON ENABLE` solder
+options. Their default copper states and exact circuit behavior are pending
+schematic verification.
 
 ## Functional Description
 
-{{functional_description}}
+The ICS-41350 converts sound pressure at its bottom acoustic port into a 1-bit
+PDM stream. A host supplies `CLK` and receives `DATA`. At the sensor, the
+`SELECT` input assigns the right channel when low (tied to ground) and the left
+channel when high (tied to the sensor supply). Two sensors can time-multiplex a
+shared data line by using opposite channel assignments.
+
+The sensor datasheet specifies a 1.65 V to 3.63 V supply at the ICS-41350 `VDD`
+pin. It also specifies typical SNR of 64 dBA in standard and high-performance
+modes, 120 dB SPL AOP in standard and low-power modes, and 126 dB SPL AOP in
+high-performance mode. These are sensor characteristics and do not establish
+the permitted `VIN` or `VSYS` range, total module current, or host logic levels.
+
+The BOM identifies U3 as a fixed 3.3 V AP2112K regulator. The relationship
+between `VIN`, `VSYS`, U3, D2, J2, and the LED-enable option remains pending
+schematic verification.
 
 ## Applications
 
-{{applications_list}}
+- Voice capture and recognition prototypes
+- Microphone-array development
+- Camera, security, and surveillance audio
+- Low-power ambient sound analysis
+- Ultrasonic sensing experiments in the ICS-41350 high-performance mode
 
 # References
 
-- [{{datasheet_name}}]({{datasheet_url}})
+- [ICS-41350 product page and datasheet](https://www.invensense.tdk.com/en-us/products/microphone/ics-41350)
+- **Manufacturing BOM:** reviewed locally; public URL pending
+- **Product repository:** public URL pending
