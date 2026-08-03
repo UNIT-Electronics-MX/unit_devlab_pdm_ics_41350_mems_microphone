@@ -1,4 +1,4 @@
-name: Build ICS-43434 Product Reference and Hardware Documentation
+name: Build Product Reference and Hardware Documentation
 
 on:
   push:
@@ -41,7 +41,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install weasyprint
 
-    - name: Build preliminary ICS-43434 product reference from Markdown
+    - name: Build product reference from Markdown
       run: |
         chmod +x tools/product-reference/build.sh
         tools/product-reference/build.sh
@@ -63,7 +63,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add docs/
         if ! git diff --cached --quiet; then
-          git commit -m "Auto-update ICS-43434 hardware documentation [skip ci]"
+          git commit -m "Auto-update hardware documentation [skip ci]"
           git push
         else
           echo "No changes to commit"

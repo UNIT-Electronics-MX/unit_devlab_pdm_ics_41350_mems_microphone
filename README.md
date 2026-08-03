@@ -29,10 +29,10 @@ connections, and a four-position 1.0 mm-pitch connector.
 
 ### Quick Setup
 
-<img src="https://img.shields.io/badge/Product%20Wiki-not%20yet%20published-lightgrey?style=for-the-badge" alt="Product Wiki — not yet published">
+[<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">](https://wiki.uelectronics.com/)
 [<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">](https://www.invensense.tdk.com/en-us/products/microphone/ics-41350)
-<img src="https://img.shields.io/badge/Buy%20Now-not%20yet%20published-lightgrey?style=for-the-badge" alt="Buy Now — not yet published">
-<img src="https://img.shields.io/badge/Getting%20Started-not%20yet%20published-lightgrey?style=for-the-badge" alt="Getting Started — not yet published">
+[<img src="https://img.shields.io/badge/Buy%20Now-orange?style=for-the-badge" alt="Buy Now">](https://uelectronics.com/)
+[<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started">](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md)
 
 </div>
 
@@ -64,15 +64,16 @@ connections, and a four-position 1.0 mm-pitch connector.
 
 ## Resources
 
-- **Schematic Diagram:** pending schematic verification
-- **Pinout Diagram:** pending publication; an artwork-backed pin table is maintained in `hardware/README.md`
-- **Getting Started Guide:** pending publication
+- [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md#hardware) — pending schematic verification
+- [Pinout Diagram](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md#pinout) — artwork-backed pin table
+- [Getting Started Guide](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md)
 - [ICS-41350 Datasheet](https://www.invensense.tdk.com/en-us/products/microphone/ics-41350)
 
 ## 📝 License
 
-All hardware and documentation in this project are licensed under the MIT
-License included with the repository.
+All hardware and documentation in this project are licensed under the **MIT
+License**. See the [repository license](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/LICENSE)
+for details. Third-party reference files may have separate terms.
 
 ## Note of Development
 

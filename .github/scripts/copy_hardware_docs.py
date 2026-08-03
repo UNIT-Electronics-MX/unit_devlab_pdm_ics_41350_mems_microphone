@@ -12,6 +12,7 @@ HARDWARE_DIR = BASE_DIR / "hardware"
 DOCS_DIR = BASE_DIR / "docs"
 DOCS_HARDWARE_DIR = DOCS_DIR / "hardware"
 PRODUCT_REFERENCE_BUILD_DIR = BASE_DIR / "build" / "product-reference"
+PRODUCT_REFERENCE_BOOK = BASE_DIR / "tools" / "product-reference" / "book.yml"
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp"}
 DOCUMENT_EXTENSIONS = {".pdf", ".docx", ".doc", ".txt", ".md"}
@@ -57,6 +58,19 @@ CATEGORY_ORDER = {
     "Manufacturing files": 4,
     "Other resources": 5,
 }
+
+
+def load_product_title():
+    """Read the product title from book.yml without requiring a YAML package."""
+    if PRODUCT_REFERENCE_BOOK.is_file():
+        for line in PRODUCT_REFERENCE_BOOK.read_text(encoding="utf-8").splitlines():
+            key, separator, value = line.partition(":")
+            if separator and key.strip() == "title":
+                title = value.strip().strip("\"'")
+                if title:
+                    return title
+
+    return BASE_DIR.name.replace("_", " ").replace("-", " ").title()
 
 
 def format_size(size_bytes):
@@ -252,6 +266,9 @@ def render_resource(item):
 
 def generate_html_page(files):
     """Generate a responsive, dependency-free hardware resource page."""
+    product_title = load_product_title()
+    escaped_product_title = html.escape(product_title)
+    escaped_product_title_attribute = html.escape(product_title, quote=True)
     grouped = {category: [] for category in CATEGORY_ORDER}
     for item in files:
         grouped[item["category"]].append(item)
@@ -282,8 +299,8 @@ def generate_html_page(files):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DevLab ICS-43434 microphone hardware documentation and downloads">
-  <title>DevLab ICS-43434 | Hardware Resources</title>
+  <meta name="description" content="{escaped_product_title_attribute} hardware documentation and downloads">
+  <title>{escaped_product_title} | Hardware Resources</title>
   <style>
     :root {{
       --ink: #17202a;
@@ -415,7 +432,7 @@ def generate_html_page(files):
   <header class="site-header">
     <div class="header-content">
       <p class="eyebrow">UNIT Electronics · DevLab</p>
-      <h1>DevLab I²S ICS-43434 MEMS Microphone</h1>
+      <h1>{escaped_product_title}</h1>
       <p class="subtitle">Direct links to hardware documentation and product files for use in external platforms.</p>
       <div class="summary" aria-label="Resource summary">
         <span><strong>{len(files)}</strong> files</span>
