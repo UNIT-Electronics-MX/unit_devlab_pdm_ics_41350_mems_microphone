@@ -1,6 +1,6 @@
 # Hardware
 
-This guide describes the hardware interface and operating limits of the
+This guide describes the hardware interface and operating limits of
 DevLab PDM ICS-41350 MEMS Microphone, Mfr. Part # **UE0148**.
 
 ## Hardware Resources
@@ -27,13 +27,11 @@ parts; their component ratings must not be treated as complete module ratings.
 | C8, C9 | 1 µF, 6.3 V, X5R | Power-section capacitors |
 | C6 | 100 nF | Microphone decoupling capacitor |
 | C1 | 200 pF, C0G | Signal capacitor |
-| R1 | 4.7 kΩ | Resistor |
-| R2, R3 | 10 kΩ | Resistors |
+| R1 | 4.7 kΩ | LED resistor |
+| R2, R3 | 10 kΩ | Pull down resistors |
 | R5 | 0 Ω | Configuration resistor |
 
-The BOM also lists a four-pin, 1.0 mm-pitch QWIIC harness. Compatibility with
-J2 and the cable orientation are pending validation; the harness entry does
-not by itself establish connector compatibility.
+The BOM also lists a four-pin, 1.0 mm-pitch QWIIC harness.
 
 ## Pinout
 
@@ -44,11 +42,11 @@ Pin labels visible in the V1.1 top artwork
 | Pin Label | Direction | Function | Validation note |
 |---|---|---|---|
 | `GND` | Power | Common ground | Artwork-confirmed |
-| `VIN` | Power input | Input to the module power section | Allowed range pending schematic verification |
-| `VSYS` | Power | Module system rail | Electrical behavior pending schematic verification |
-| `CLK` | Input | PDM clock input | Sensor clock modes are listed below; module-level validation is pending |
+| `VIN` | Power input | Input to the module power section | 5V - 3.3V |
+| `VSYS` | Power | Module system rail | 3.3V |
+| `CLK` | Input | PDM clock input | Sensor clock modes are listed below; module-level VSYS |
 | `DATA` | Output | PDM microphone data | Artwork-confirmed signal name |
-| `CH` | Input | Microphone channel selection | Low/right and high/left apply to the ICS-41350 `SELECT` pin; module mapping pending schematic verification |
+| `CH` | Input | Microphone channel selection | Low/right and high/left apply to the ICS-41350 `CH` pin. It could be configured via hardware or firmware |
 
 </div>
 
