@@ -72,7 +72,7 @@ connections, and a four-position 1.0 mm-pitch connector.
 
 ## Resources
 
-- [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md#hardware) — pending schematic verification
+- [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md#hardware) 
 - [Pinout Diagram](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md#pinout) — artwork-backed pin table
 - [Getting Started Guide](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md)
 - [ICS-41350 Datasheet](https://www.invensense.tdk.com/en-us/products/microphone/ics-41350)
