@@ -1,29 +1,15 @@
-> **Note of Development:**  
-> This hardware module is under active development. File and directory structures, naming conventions, and documentation formats may change as the design evolves.  
-> 
-> - **File Naming:**  
->   - Use capital letters and underscores only.  
->   - Start filenames with `unit_<filename>_v_<version>_<description>.<ext>`.  
->   - Example: `unit_top_v_1_1_0_pdm_ics_41350_mems_microphone.png`
->   - Schematic: `schematic_v_<version>_<description>.<ext>` (e.g., `schematic_v_1_1_0_pdm_ics_41350_mems_microphone.png`)
->   - Topology: `unit_topology_v_<version>_<description>.<ext>`
->   - Dimensions: `unit_dimension_v_<version>_<description>.<ext>`
-> 
-> - **README Structure:**  
->   - Hardware overview  
->   - Pinout and connector layout  
->   - Dimensions and topology  
->   - Functional description  
->   - Applications  
->   - References  
-> 
-> Please refer to the latest commit history for updates and changes.
-
 # Hardware
 
+This guide describes the hardware interface and operating limits of the
+DevLab PDM ICS-41350 MEMS Microphone, Mfr. Part # **UE0148**.
+
+## Hardware Resources
+
 <div align="center">
-<img src="resources/Schematics_icon.jpg?raw=false" width="200px" alt="Schematic resource"><br/>
-Schematic pending verification
+  <a href="./unit_sch_v_1_0_0_ue0148_devlab_pdm_ics_41350_mems_microphone.pdf">
+    <img src="./resources/Schematics_icon.jpg" width="180" alt="Schematic icon"><br>
+    Schematic
+  </a>
 </div>
 
 The V1.1 artwork identifies this board as a DevLab PDM microphone module based
