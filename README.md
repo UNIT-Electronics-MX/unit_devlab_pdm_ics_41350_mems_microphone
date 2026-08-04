@@ -46,11 +46,19 @@ connections, and a four-position 1.0 mm-pitch connector.
 | Manufacturer Part Number | UE0148 |
 | Hardware Revision | V1.1 artwork |
 | Microphone | TDK InvenSense ICS-41350 bottom-port digital MEMS microphone |
+| Input Voltage `VIN` | 5V - 3.3V |
+| Supply Current | 225uA Max |
+| Sleep Current | 12uA |
+| Sensitivity | -26 dB FS |
+| SNR | 63 dBA |
+| Dynamic Range | 89 dB |
+| PSR | -97 dB FS |
+| THD | 0.2% |
 | Interface | 1-bit pulse-density modulation (PDM) |
 | Exposed Signals | `GND`, `VIN`, `VSYS`, `CLK`, `DATA`, `CH` |
 | Regulator | AP2112K-3.3TRG1 fixed 3.3 V LDO, as identified by the BOM |
 | Connectors | 1×6 2.54 mm header footprint and 4-position 1.0 mm-pitch connector |
-| Validation Status | Module input limits, total current, dimensions, and solder-option defaults pending validation |
+| Validation Status | Dimensions, and solder-option defaults pending validation |
 
 </div>
 
