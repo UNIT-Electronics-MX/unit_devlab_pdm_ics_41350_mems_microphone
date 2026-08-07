@@ -61,7 +61,7 @@ connections, and a four-position 1.0 mm-pitch connector.
 | Exposed Signals | `GND`, `VIN`, `VSYS`, `CLK`, `DATA`, `CH` |
 | Regulator | AP2112K-3.3TRG1 fixed 3.3 V LDO, as identified by the BOM |
 | Connectors | 1×6 2.54 mm header footprint and 4-position 1.0 mm-pitch connector |
-| Validation Status | Dimensions, and solder-option defaults pending validation |
+
 
 </div>
 
