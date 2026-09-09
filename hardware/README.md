@@ -79,7 +79,7 @@ diode, decoupling capacitors, indicator LED, and resistors. Their exact power
 path and configuration connections are pending schematic verification.
 
 <div align="center">
-<img src="resources/unit_btm_v_1_1_0_pdm_ics_41350_mems_microphone.png" width="500px" alt="V1.1 bottom artwork"><br/>
+<img src="./resources/unit_btm_v_1_0_0_devlab_pdm_ics_41350_mems_microphone.png"><br/>
 V1.1 bottom artwork
 </div>
 
