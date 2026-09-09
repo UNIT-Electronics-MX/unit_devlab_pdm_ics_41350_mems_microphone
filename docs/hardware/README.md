@@ -36,7 +36,11 @@ The BOM also lists a four-pin, 1.0 mm-pitch QWIIC harness.
 ## Pinout
 
 <div align="center">
-<img src="resources/unit_top_v_1_1_0_pdm_ics_41350_mems_microphone.png" width="500px" alt="V1.1 top artwork with PDM microphone pin labels"><br/>
+    <a href="./unit_pinout_v_1_0_0_devlab_pdm_ics_41350_mems_microphone_en.pdf"><img src="./resources/unit_pinout_v_1_0_0_devlab_pdm_ics_41350_mems_microphone_en.png" width="500px"><br/>Pinout</a>
+    <br/>
+    <br/>
+    <br/>
+</div>
 Pin labels visible in the V1.1 top artwork
 
 | Pin Label | Direction | Function | Validation note |
