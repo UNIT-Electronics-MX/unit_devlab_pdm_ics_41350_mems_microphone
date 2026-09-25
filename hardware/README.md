@@ -6,7 +6,7 @@ DevLab PDM ICS-41350 MEMS Microphone, Mfr. Part # **UE0148**.
 ## Hardware Resources
 
 <div align="center">
-  <a href="./unit_sch_v_1_0_0_ue0148_devlab_pdm_ics_41350_mems_microphone.pdf">
+  <a href="./unit_sch_v_1_2_1_ue0148_devlab_pdm_ics_41350_mems_microphone.pdf">
     <img src="./resources/Schematics_icon.jpg" width="180" alt="Schematic icon"><br>
     Schematic
   </a>
@@ -36,7 +36,7 @@ The BOM also lists a four-pin, 1.0 mm-pitch QWIIC harness.
 ## Pinout
 
 <div align="center">
-    <a href="./unit_pinout_v_1_0_0_devlab_pdm_ics_41350_mems_microphone_en.pdf"><img src="./resources/unit_pinout_v_1_0_0_devlab_pdm_ics_41350_mems_microphone_en.png" width="500px"><br/>Pinout</a>
+    <a href="./unit_pinout_v_1_2_1_devlab_pdm_ics_41350_mems_microphone_en.pdf"><img src="./resources/unit_pinout_v_1_2_1__devlab_pdm_ics_41350_mems_microphone_en.png" width="500px"><br/>Pinout</a>
     <br/>
     <br/>
     <br/>
@@ -68,20 +68,24 @@ validated module ratings.
 
 ## Dimensions
 
-A controlled board drawing and mounting coordinates are not available.
-Dimensions are pending validation and must not be scaled from the rendered
-artwork.
+<div align="center">
+<a href="./resources/unit_dimensions_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png">
+<img src="./resources/unit_dimensions_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png" width="600px"><br/>
+Dimensions
+</a>
+</div>
 
+---
 ## Topology
 
-The BOM confirms an ICS-41350 microphone, AP2112K-3.3TRG1 regulator, Schottky
-diode, decoupling capacitors, indicator LED, and resistors. Their exact power
-path and configuration connections are pending schematic verification.
-
 <div align="center">
-<img src="./resources/unit_btm_v_1_0_0_devlab_pdm_ics_41350_mems_microphone.png"><br/>
-V1.1 bottom artwork
+<a href="./resources/external/">
+<img src="./resources/unit_topology_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png" width="800px"><br/>
+Topology
+</a>
 </div>
+
+### Topology Description
 
 ## Pin & Connector Layout
 
