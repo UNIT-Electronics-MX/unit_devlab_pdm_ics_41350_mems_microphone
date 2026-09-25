@@ -79,7 +79,7 @@ Dimensions
 ## Topology
 
 <div align="center">
-<a href="./resources/external/">
+<a href="./resources/unit_topology_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png">
 <img src="./resources/unit_topology_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png" width="800px"><br/>
 Topology
 </a>
