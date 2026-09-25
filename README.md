@@ -21,7 +21,7 @@ and indicator LED; the artwork shows channel selection, six castellated
 connections, and a four-position 1.0 mm-pitch connector.
 
 <div align="center">
-  <img src="hardware/resources/unit_top_v_1_1_0_pdm_ics_41350_mems_microphone.png" width="450px" alt="DevLab PDM ICS-41350 MEMS Microphone top view">
+  <img src="./hardware/resources/unit_top_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png" width="450px" alt="DevLab PDM ICS-41350 MEMS Microphone top view">
   <p><em>DevLab PDM ICS-41350 MEMS Microphone</em></p>
 </div>
 
