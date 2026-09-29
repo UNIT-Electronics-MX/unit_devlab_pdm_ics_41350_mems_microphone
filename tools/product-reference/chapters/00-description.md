@@ -5,7 +5,7 @@ built around the bottom-port TDK InvenSense ICS-41350. The microphone contains
 a MEMS element, impedance-converter amplifier, and fourth-order sigma-delta
 modulator that produces a 1-bit pulse-density-modulated output.
 
-![](hardware/resources/unit_top_v_1_1_0_pdm_ics_41350_mems_microphone.png){width=5.4in}
+![](docs/hardware/resources/unit_top_v_1_1_0_pdm_ics_41350_mems_microphone.png){width=5.4in}
 
 ### **Applications**
 
