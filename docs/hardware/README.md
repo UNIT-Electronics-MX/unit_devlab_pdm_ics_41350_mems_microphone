@@ -1,9 +1,26 @@
-# Hardware
+# DevLab PDM ICS-41350 MEMS Microphone Hardware
 
-This guide describes the hardware interface and operating limits of
-DevLab PDM ICS-41350 MEMS Microphone, Mfr. Part # **UE0148**.
+## Hardware Scope
 
-## Hardware Resources
+This page documents **DevLab PDM ICS-41350 MEMS Microphone** (MPN **UE0148**) using the schematic, BOM, and available board artwork. Sensor specifications are distinguished from validated module-level operating limits.
+
+## Power Tree
+
+The BOM identifies `U3` as an AP2112K fixed 3.3 V regulator. The relationship between `VIN`, `VSYS`, the regulator, diode, connector, and LED-enable option requires schematic and board verification. A separate power-tree drawing is not available.
+
+## Block Diagram
+
+A separate functional block-diagram drawing is not included in the available product-specific files. See the [Topology](#topology) section.
+
+## Naming Rules
+
+- Product name: **DevLab PDM ICS-41350 MEMS Microphone**.
+- Product family: **UNIT DevLab ecosystem**.
+- MPN: **UE0148**.
+- Existing source files retain their published names and revisions.
+- Generated Product Reference: `unit_product_reference_v_0_1_0_pdm_ics_41350_mems_microphone.pdf`.
+
+## Hardware
 
 <div align="center">
   <a href="./unit_sch_v_1_2_1_ue0148_devlab_pdm_ics_41350_mems_microphone.pdf">
@@ -33,8 +50,6 @@ parts; their component ratings must not be treated as complete module ratings.
 
 The BOM also lists a four-pin, 1.0 mm-pitch QWIIC harness.
 
-## Board Views
-
 ![UE0148 PDM ICS-41350 top view](resources/unit_top_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png)
 
 ![UE0148 PDM ICS-41350 bottom view](resources/unit_btm_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png)
@@ -52,25 +67,11 @@ Pin labels visible in the V1.1 top artwork
 | Pin Label | Direction | Function | Validation note |
 |---|---|---|---|
 | `GND` | Power | Common ground | Artwork-confirmed |
-| `VIN` | Power input | Input to the module power section | 5V - 3.3V |
+| `VIN` | Power input | Input to the module power section | Module-level range pending validation |
 | `VSYS` | Power | Module system rail | 3.3V |
-| `CLK` | Input | PDM clock input | Sensor clock modes are listed below; module-level VSYS |
+| `CLK` | Input | PDM clock input | Sensor clock modes are listed below; module-level supply range pending validation |
 | `DATA` | Output | PDM microphone data | Artwork-confirmed signal name |
 | `CH` | Input | Microphone channel selection | Low/right and high/left apply to the ICS-41350 `CH` pin. It could be configured via hardware or firmware |
-
-</div>
-
-### ICS-41350 clock-selected modes
-
-These are sensor specifications from the ICS-41350 datasheet, not independently
-validated module ratings.
-
-| ICS-41350 mode | Clock frequency |
-|---|---:|
-| Sleep | Below 200 kHz |
-| Low power | 400 to 800 kHz |
-| Standard | 1.0 to 3.3 MHz |
-| High performance | 4.1 to 4.8 MHz |
 
 ## Dimensions
 
@@ -81,7 +82,6 @@ Dimensions
 </a>
 </div>
 
----
 ## Topology
 
 <div align="center">
@@ -92,6 +92,8 @@ Topology
 </div>
 
 ### Topology Description
+
+The available topology drawing identifies the board layout. Power-path details and solder-option defaults require verification against the assembled board.
 
 ## Pin & Connector Layout
 
@@ -122,6 +124,18 @@ The BOM identifies U3 as a fixed 3.3 V AP2112K regulator. The relationship
 between `VIN`, `VSYS`, U3, D2, J2, and the LED-enable option remains pending
 schematic verification.
 
+### ICS-41350 clock-selected modes
+
+These are sensor specifications from the ICS-41350 datasheet, not independently
+validated module ratings.
+
+| ICS-41350 mode | Clock frequency |
+|---|---:|
+| Sleep | Below 200 kHz |
+| Low power | 400 to 800 kHz |
+| Standard | 1.0 to 3.3 MHz |
+| High performance | 4.1 to 4.8 MHz |
+
 ## Applications
 
 - Voice capture and recognition prototypes
@@ -130,8 +144,9 @@ schematic verification.
 - Low-power ambient sound analysis
 - Ultrasonic sensing experiments in the ICS-41350 high-performance mode
 
-# References
+## References
 
 - [ICS-41350 product page and datasheet](https://www.invensense.tdk.com/en-us/products/microphone/ics-41350)
 - **Manufacturing BOM:** reviewed locally; public URL pending
-- **Product repository:** public URL pending
+- [Product repository](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone)
+- [Product Reference](../docs/hardware/unit_product_reference_v_0_1_0_pdm_ics_41350_mems_microphone.pdf)
