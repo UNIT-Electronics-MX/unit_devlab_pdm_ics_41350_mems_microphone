@@ -2,8 +2,10 @@
 
 | Reference | Location |
 |---|---|
-| Repository | Public URL pending |
-| Hardware notes | Public URL pending |
+| Repository | [UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone) |
+| Hardware notes | [Hardware README](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md) |
+| Pinout PDFs | [English](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/unit_pinout_v_1_2_1_devlab_pdm_ics_41350_mems_microphone_en.pdf) · [Spanish](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/unit_pinout_v_1_0_0_devlab_pdm_ics_41350_mems_microphone_es.pdf) |
+| Pinout images | [English PNG](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/resources/unit_pinout_v_1_2_1__devlab_pdm_ics_41350_mems_microphone_en.png) · [Spanish PNG](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/resources/unit_pinout_v_1_0_0_devlab_pdm_ics_41350_mems_microphone_es.png) |
 | Microphone datasheet | [TDK InvenSense ICS-41350](https://www.invensense.tdk.com/en-us/products/microphone/ics-41350) |
 | Manufacturing BOM | Reviewed local source; public URL pending |
 

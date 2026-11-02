@@ -1,5 +1,11 @@
 ## **4 Connectors and Pinout**
 
+The released pinout shows both board views, the edge labels, and the
+four-position connector signals. English and Spanish PDFs are linked in
+Section 8.
+
+![UE0148 pinout, top and bottom views.](hardware/resources/unit_pinout_v_1_2_1__devlab_pdm_ics_41350_mems_microphone_en.png){width=5.0in}
+
 ### **4.1 Edge Connections**
 
 | Board label | Direction | Function |
