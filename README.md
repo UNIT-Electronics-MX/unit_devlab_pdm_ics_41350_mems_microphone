@@ -1,17 +1,6 @@
 # DevLab: PDM ICS-41350 MEMS Microphone Module
-<!-- Exception:
 
-The PULSAR development board line does not use the DevLab: prefix.
 
-Format: PULSAR [MCU/Model]
-
-Examples: PULSAR C6, PULSAR H2, PULSAR RP2350
-
-The JUN R3 board also does not use DevLab:
-
-Example: JUN R3 -->
-
-## Introduction
 
 The DevLab PDM ICS-41350 MEMS Microphone is a digital audio module built around
 the bottom-port TDK InvenSense ICS-41350. The microphone provides a 1-bit PDM
@@ -43,7 +32,7 @@ connections, and a four-position 1.0 mm-pitch connector.
 | Feature | Description |
 |---|---|
 | Product | DevLab PDM ICS-41350 MEMS Microphone |
-| Manufacturer Part Number | UE0148 |
+| MPN | UE0148 |
 | Hardware Revision | V1.1 artwork |
 | Microphone | TDK InvenSense ICS-41350 bottom-port digital MEMS microphone |
 | Supply Voltage | 5 V - 3.3 V |
@@ -86,12 +75,11 @@ All hardware and documentation in this project are licensed under the **MIT
 License**. See the [repository license](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/LICENSE)
 for details. Third-party reference files may have separate terms.
 
-## Note of Development
-
-This product documentation is under active development. The V1.1 artwork and
-manufacturing BOM establish the visible pin labels and fitted component
-identities; module-level electrical limits, dimensions, schematic topology,
-and tested host configurations remain pending validation.
+> **Note of Development:**
+> This product documentation is under active development. The V1.1 artwork and
+> manufacturing BOM establish the visible pin labels and fitted component
+> identities; module-level electrical limits, dimensions, schematic topology,
+> and tested host configurations remain pending validation.
 
 <div align="center">
   <sub>Template created by UNIT Electronics</sub>
