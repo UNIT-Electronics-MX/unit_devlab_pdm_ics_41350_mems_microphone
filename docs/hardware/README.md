@@ -33,6 +33,12 @@ parts; their component ratings must not be treated as complete module ratings.
 
 The BOM also lists a four-pin, 1.0 mm-pitch QWIIC harness.
 
+## Board Views
+
+![UE0148 PDM ICS-41350 top view](resources/unit_top_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png)
+
+![UE0148 PDM ICS-41350 bottom view](resources/unit_btm_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png)
+
 ## Pinout
 
 <div align="center">
