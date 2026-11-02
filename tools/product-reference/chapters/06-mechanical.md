@@ -1,6 +1,6 @@
 ## **6 Mechanical Information**
 
-![](docs/hardware/resources/unit_top_v_1_1_0_pdm_ics_41350_mems_microphone.png){width=5.4in}
+![](docs/hardware/resources/unit_top_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png){width=5.4in}
 
 The rendered V1.1 artwork shows six castellated edge connections, a
 four-position right-angle connector, and a central circular opening. A

@@ -293,24 +293,24 @@ body {
 
 #TOC > ul > li {
   break-inside: avoid;
-  margin: 0 0 4mm;
-  padding-top: 2mm;
+  margin: 0 0 2.5mm;
+  padding-top: 1mm;
   border-top: .5pt solid var(--line);
   font-size: 9pt;
   font-weight: 700;
 }
 
 #TOC ul ul {
-  margin: 2mm 0 0;
+  margin: 1mm 0 0;
   padding: 0;
 }
 
 #TOC ul ul li {
-  margin: 0 0 1.5mm;
+  margin: 0 0 .8mm;
   color: var(--muted);
   font-size: 7.7pt;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 #TOC a {

@@ -27,4 +27,4 @@ The BOM identifies an AP2112K-3.3TRG1 regulator, NSR0320MW2T1G Schottky diode,
 indicator LED, and associated resistors. The exact `VIN`/`VSYS` path and the
 LED-enable default remain pending schematic verification.
 
-![](docs/hardware/resources/unit_btm_v_1_1_0_pdm_ics_41350_mems_microphone.png){width=5.4in}
+![](docs/hardware/resources/unit_btm_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png){width=5.4in}
