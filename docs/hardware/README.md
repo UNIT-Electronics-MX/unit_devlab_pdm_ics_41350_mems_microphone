@@ -2,7 +2,11 @@
 
 ## Hardware Scope
 
-This page documents **DevLab PDM ICS-41350 MEMS Microphone** (MPN **UE0148**) using the schematic, BOM, and available board artwork. Sensor specifications are distinguished from validated module-level operating limits.
+This page documents **DevLab PDM ICS-41350 MEMS Microphone** using the schematic, BOM, and available board artwork. Sensor specifications are distinguished from validated module-level operating limits.
+
+| Field | Value |
+|---|---|
+| MPN | UE0148 |
 
 ## Power Tree
 
@@ -16,7 +20,6 @@ A separate functional block-diagram drawing is not included in the available pro
 
 - Product name: **DevLab PDM ICS-41350 MEMS Microphone**.
 - Product family: **UNIT DevLab ecosystem**.
-- MPN: **UE0148**.
 - Existing source files retain their published names and revisions.
 - Generated Product Reference: `unit_product_reference_v_0_1_0_pdm_ics_41350_mems_microphone.pdf`.
 
