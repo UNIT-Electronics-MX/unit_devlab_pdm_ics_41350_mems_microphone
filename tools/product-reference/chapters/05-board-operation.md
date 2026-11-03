@@ -37,7 +37,19 @@ four-position connector carries `CLK`, `DATA`, `VSYS`, and `GND`.
 ### **5.2 Arduino Library Example**
 
 The example requires the library in the Arduino sketchbook and an ESP32-S3
-with Arduino-ESP32 3.x. The complete
+with Arduino-ESP32 3.x. Arduino Library Manager lists `DevLab_AudioInput`:
+
+![DevLab_AudioInput entry in Arduino Library Manager.](hardware/resources/external/audioinput_library.png){width=2.5in}
+
+```{=latex}
+\clearpage
+```
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+The complete
 [AudioInputBasicRead sketch](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/software/examples/pdm/cpp_examples/AudioInputBasicRead/AudioInputBasicRead.ino)
 reports the absolute peak of each captured PCM16 block at 115200 baud:
 
