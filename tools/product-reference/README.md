@@ -8,9 +8,9 @@ metadata and chapter order are defined in `book.yml`.
 Requirements:
 
 - Pandoc
-- WeasyPrint
+- WeasyPrint, XeLaTeX, or LibreOffice for PDF output
 
-Run from the repository root:
+The repository root provides this build command:
 
 ```bash
 ./tools/product-reference/build.sh
@@ -25,10 +25,10 @@ unit_product_reference_v_0_1_0_pdm_ics_41350_mems_microphone.html
 unit_product_reference_v_0_1_0_pdm_ics_41350_mems_microphone.pdf
 ```
 
-The Markdown chapters are the source of truth. Product values and pin mappings
-must be taken from the released files in `hardware/`, the manufacturing
-BOM, or the supplied ICS-41350 datasheet. Do not infer module electrical
-limits from the rating of an individual BOM component.
+The Markdown chapters define the product reference. Board values and pin
+mappings follow the files in `hardware/`; ICS-41350 characteristics follow
+the manufacturer datasheet. The sensor supply range applies at the
+microphone pin.
 
-This edition omits unvalidated firmware and marks missing module-level
-characteristics as pending.
+Chapter 5 presents the ESP32-S3 capture example with the DevLab_AudioInput
+library.

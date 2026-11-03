@@ -11,9 +11,8 @@
 | Digital audio interface | PDM |
 | Product-reference revision | 0.1.0 |
 
-### **1.2 Package Contents**
+### **1.2 Interface Hardware**
 
-The manufacturing BOM includes one four-conductor, 1.0 mm-pitch QWIIC-style
-harness. Confirm purchased-product contents with the distributor. The BOM
-identifies J2 as a four-position, 1.0 mm-pitch connector, but cable orientation
-and end-to-end pin order remain pending validation.
+The module provides six 2.54 mm edge connections and a four-position,
+1.0 mm-pitch right-angle connector. The connector carries `CLK`, `DATA`,
+`VSYS`, and `GND`. Its signal order follows the board pinout in Section 4.

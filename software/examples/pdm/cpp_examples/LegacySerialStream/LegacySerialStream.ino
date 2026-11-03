@@ -18,9 +18,8 @@
 #define PDM_CLK_PIN  2
 #define PDM_DATA_PIN 3
 
-// PDM slot: LEFT o RIGHT según pin SEL del micrófono
-// Si audio con ruido, prueba I2S_PDM_SLOT_RIGHT
-#define PDM_MIC_SLOT I2S_PDM_SLOT_LEFT
+// La placa UE0148 selecciona RIGHT por defecto; cambiar si CH selecciona LEFT.
+#define PDM_MIC_SLOT I2S_PDM_SLOT_RIGHT
 
 // ======== VARIABLES GLOBALES ========
 i2s_chan_handle_t rx_handle;

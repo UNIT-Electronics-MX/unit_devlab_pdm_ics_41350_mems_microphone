@@ -1,35 +1,27 @@
-# Software Examples
+# Software Examples — UE0148 PDM ICS-41350
 
-This directory contains example code and templates for various software modules. These examples demonstrate how to use the provided APIs, integrate with different components, and implement common functionalities within the software space.
+The Arduino sketches follow one layout:
 
-## Contents
-
-- Sample usage of core modules
-- Integration patterns
-- Best practices for module interaction
-
-## Example: Initializing a Module
-
-```python
-from mymodule import Module
-
-mod = Module(config="default")
-mod.initialize()
+```text
+pdm/
+├── README.md
+└── cpp_examples/
+    ├── AudioInputBasicRead/
+    │   ├── AudioInputBasicRead.ino
+    │   └── README.md
+    └── LegacySerialStream/
+        ├── LegacySerialStream.ino
+        └── README.md
 ```
 
-## Example: Handling Events
+Each sketch is in its own directory, and its `.ino` filename matches
+the directory name so Arduino IDE can open it directly.
 
-```python
-def on_event(event):
-    print(f"Event received: {event}")
+| Example | Purpose | Output |
+|---|---|---|
+| [AudioInputBasicRead](pdm/cpp_examples/AudioInputBasicRead/README.md) | Capture PDM through DevLab_AudioInput | PCM16 peak as text, 115200 baud |
+| [LegacySerialStream](pdm/cpp_examples/LegacySerialStream/README.md) | Capture through the ESP32 driver | Binary PCM16 stream, 2000000 baud |
 
-mod.register_callback(on_event)
-```
-
-## Example: Clean Shutdown
-
-```python
-mod.shutdown()
-```
-
-Refer to individual module documentation for more detailed examples and advanced usage.
+Start with [PDM wiring and setup](pdm/README.md). The complete procedure
+and the library example are also in
+[Board Operation](../../tools/product-reference/chapters/05-board-operation.md).

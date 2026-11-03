@@ -1,25 +1,6 @@
-# Getting Started
+# UE0148 Software
 
-Welcome to the project! This guide will help you set up your development environment and start working with the board.
-
-## Prerequisites
-
-- Ensure you have the required hardware and cables.
-- Install necessary software tools (see [Installation](#installation) below).
-
-## Installation
-
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/your-org/your-project.git
-    ```
-2. Follow the setup instructions in the `docs/` directory.
-
-## Usage
-
-- Connect the board to your computer.
-- Build and flash the firmware as described in the [User Guide](docs/USER_GUIDE.md).
-
-## Support
-
-For questions or issues, please open an issue on GitHub.
+See [Software Examples](examples/README.md) for the ESP32-S3
+`DevLab_AudioInput` sketch, channel selection, and wiring notes.
+The complete board procedure is in
+[Board Operation](../tools/product-reference/chapters/05-board-operation.md).

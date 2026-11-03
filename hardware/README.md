@@ -10,11 +10,14 @@ This page documents **DevLab PDM ICS-41350 MEMS Microphone** using the schematic
 
 ## Power Tree
 
-The BOM identifies `U3` as an AP2112K fixed 3.3 V regulator. The relationship between `VIN`, `VSYS`, the regulator, diode, connector, and LED-enable option requires schematic and board verification. A separate power-tree drawing is not available.
+The schematic shows `VIN` feeding the AP2112K fixed 3.3 V regulator and a Schottky diode toward `VSYS`. The allowed module input range, backfeed behavior, and LED-enable option require board validation. A separate power-tree drawing is not available.
 
 ## Block Diagram
 
-A separate functional block-diagram drawing is not included in the available product-specific files. See the [Topology](#topology) section.
+![UE0148 PDM ICS-41350 functional block diagram](resources/external/pdm_ics_41350_mems_microphone.png)
+
+The host supplies `CLK` and receives the microphone's PDM `DATA`.
+The diagram also shows channel selection and the board power section.
 
 ## Naming Rules
 
@@ -74,7 +77,7 @@ Pin labels visible in the V1.1 top artwork
 | `VSYS` | Power | Module system rail | 3.3V |
 | `CLK` | Input | PDM clock input | Sensor clock modes are listed below; module-level supply range pending validation |
 | `DATA` | Output | PDM microphone data | Artwork-confirmed signal name |
-| `CH` | Input | Microphone channel selection | Low/right and high/left apply to the ICS-41350 `CH` pin. It could be configured via hardware or firmware |
+| `CH` | Input | Microphone channel selection | Connects to sensor `SELECT`: low/right, high/left; schematic default is right |
 
 ## Dimensions
 
@@ -106,8 +109,8 @@ The available topology drawing identifies the board layout. Power-path details a
 | J2 | `GND`, `VSYS`, `DATA`, `CLK` | Four contacts shown in the top artwork; pin numbering and cable orientation pending validation |
 
 The bottom artwork also labels `CH SELECTION L/R` and `LED ON ENABLE` solder
-options. Their default copper states and exact circuit behavior are pending
-schematic verification.
+options. The schematic shows a pull-down selecting right by default; confirm
+the assembled bridge and LED option before use.
 
 ## Functional Description
 
@@ -123,9 +126,9 @@ modes, 120 dB SPL AOP in standard and low-power modes, and 126 dB SPL AOP in
 high-performance mode. These are sensor characteristics and do not establish
 the permitted `VIN` or `VSYS` range, total module current, or host logic levels.
 
-The BOM identifies U3 as a fixed 3.3 V AP2112K regulator. The relationship
-between `VIN`, `VSYS`, U3, D2, J2, and the LED-enable option remains pending
-schematic verification.
+The schematic shows `VIN` feeding U3, then D2 toward `VSYS`; J2 exposes
+`VSYS`. Module input limits, backfeed behavior, and the assembled LED
+option remain pending board validation.
 
 ### ICS-41350 clock-selected modes
 
@@ -150,6 +153,8 @@ validated module ratings.
 ## References
 
 - [ICS-41350 product page and datasheet](https://www.invensense.tdk.com/en-us/products/microphone/ics-41350)
+- [Local ICS-41350 datasheet](resources/external/ds-000047-ics-41350-datasheet.pdf)
+- [DevLab_AudioInput example](../software/examples/pdm/cpp_examples/AudioInputBasicRead/AudioInputBasicRead.ino)
 - **Manufacturing BOM:** reviewed locally; public URL pending
 - [Product repository](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone)
 - [Product Reference](../docs/hardware/unit_product_reference_v_0_1_0_pdm_ics_41350_mems_microphone.pdf)

@@ -1,30 +1,65 @@
 ## **3 Functional Overview**
 
-### **3.1 Audio Signal Path**
+### **3.1 Functional Block Diagram** {.section-page}
 
-The ICS-41350 senses pressure through its bottom acoustic port and emits the
-1-bit output of a fourth-order sigma-delta modulator on `DATA`. A host supplies
-`CLK` and performs PDM decimation or passes the stream to a compatible codec.
+![UE0148 PDM ICS-41350 microphone module block diagram.](hardware/resources/external/pdm_ics_41350_mems_microphone.png){width=6.3in}
 
-### **3.2 Operating Modes**
+The diagram summarizes the microphone, channel selection, indicator, and
+board power section. The host drives `CLK`; the microphone drives
+`DATA` toward the host. Section 2 specifies the sensor supply range.
 
-The sensor selects its operating mode from the applied clock frequency: below
-200 kHz for sleep, 400 to 800 kHz for low power, 1.0 to 3.3 MHz for standard,
-and 4.1 to 4.8 MHz for high performance. These are ICS-41350 characteristics;
-tested module and host configurations remain pending validation.
+### **3.2 Signal Path**
 
-### **3.3 Channel Selection**
+Sound enters the ICS-41350 through its bottom acoustic port. A MEMS sensing
+element and impedance-converter amplifier feed a fourth-order sigma-delta
+modulator. The `DATA` pin carries its 1-bit PDM output. The host supplies
+`CLK` and decimates and filters PDM to obtain audio samples. The
+microphone outputs a PDM bitstream. The
+[ICS-41350 datasheet](hardware/resources/external/ds-000047-ics-41350-datasheet.pdf)
+describes this path in its functional block diagram and “Theory of Operation.”
 
-At the ICS-41350 `SELECT` pin, low selects the right channel (`DATA1`) and high,
-tied to sensor VDD, selects the left channel (`DATA2`). The V1.1 board artwork
-labels an exposed `CH` connection and a `CH SELECTION L/R` solder option. Their
-exact circuit mapping and default state are pending schematic verification.
+### **3.3 Clock-Controlled Modes**
 
-### **3.4 Power Section**
+The sensor has no mode register. Its clock frequency selects the mode:
 
-The BOM identifies an AP2112K-3.3TRG1 regulator, NSR0320MW2T1G Schottky diode,
-1 µF power capacitors, a 100 nF microphone decoupling capacitor, an orange
-indicator LED, and associated resistors. The exact `VIN`/`VSYS` path and the
-LED-enable default remain pending schematic verification.
+| Sensor mode | `CLK` frequency | Typical sensor current | Typical sensitivity |
+|---|---:|---:|---:|
+| Sleep | Below 200 kHz | 12 µA | No data output |
+| Low power | 400–800 kHz | 185 µA | −26 dB FS |
+| Standard | 1.0–3.3 MHz | 430 µA | −26 dB FS |
+| High performance | 4.1–4.8 MHz | 650 µA | −32 dB FS |
 
-![](docs/hardware/resources/unit_btm_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png){width=5.4in}
+The table lists **sensor** characteristics from DS-000047. The clock
+ranges between listed modes lie outside the specified operating modes.
+Below 200 kHz, `DATA` becomes high impedance. After a valid clock starts,
+the microphone takes up to 20 ms to wake and settle.
+High-performance mode supports ultrasonic capture up to 40 kHz only when
+the host decimation filter and acoustic path also preserve that band.
+
+### **3.4 PDM Channel and Shared Data**
+
+The ICS-41350 `SELECT` pin low selects the right channel (DATA1); high
+at sensor VDD selects the left channel (DATA2). Right-channel bits are
+clocked on the rising edge and left-channel bits on the falling edge.
+The microphone releases `DATA` outside its selected half-cycle, allowing
+one left and one right microphone to share a data line and clock.
+The sensor datasheet specifies a shared PDM data line without a pull-up
+or pull-down.
+
+The UE0148 schematic connects board `CH` to sensor `SELECT` through
+R5 (0 Ω) and shows R3 (10 kΩ) pulling the selection low: the circuit selects
+the **right** channel by default. The assembled solder option determines
+the effective selection. The host PDM receiver selects the same channel as the
+microphone. The four-position connector carries `CLK` and `DATA`, but
+not `CH`; the board option controls channel selection through that connector.
+
+### **3.5 Power and Host Interface**
+
+The circuit routes `VIN` through an AP2112K-3.3V regulator and
+a Schottky diode toward `VSYS`; the microphone VDD pin is on `VSYS`.
+It includes a 100 nF capacitor at microphone VDD and an orange power LED.
+The header and connector expose the `VSYS` rail.
+The ICS-41350 VDD operating range of 1.65–3.63 V applies at the sensor pin;
+the module supply path determines the voltage at that pin.
+
+![](hardware/resources/unit_btm_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png){width=5.4in}

@@ -1,22 +1,18 @@
 ## **9 Appendix**
 
-### **9.1 Source Hierarchy**
+### **9.1 Technical Basis**
 
 This product reference follows the V1.1 board artwork for visible signal
-labels, the manufacturing BOM for fitted component identities, and TDK
-InvenSense datasheet DS-000047 revision 1.1 for ICS-41350 characteristics. A
-released module schematic and module-level validation take precedence if they
-conflict with this edition.
+labels, the UE0148 schematic for circuit connections, and TDK InvenSense
+datasheet DS-000047 revision 1.1 for ICS-41350 characteristics.
 
-### **9.2 Items Pending Validation**
+### **9.2 Document Scope**
 
-- Module schematic and controlled connector pin-number drawing
-- Module `VIN` and `VSYS` operating and absolute-maximum ratings
-- Module logic levels and total current consumption
-- Tested PDM clock modes, decimation settings, sample rates, and host mappings
-- Board dimensions and mounting coordinates
-- Solder-option defaults and J2 cable orientation
-- Module-level acoustic, environmental, and ultrasonic characterization
+- Section 2 lists the ICS-41350 sensor characteristics and the module's
+  nominal regulated voltage.
+- Sections 3 and 4 describe the signal path, power circuit, and board connections.
+- Section 5 shows an ESP32-S3 capture example using the DevLab_AudioInput library.
+- Section 6 shows the board views and dimension drawing.
 
 ### **9.3 Document Control**
 
@@ -27,4 +23,4 @@ conflict with this edition.
 | Hardware artwork covered | V1.1 |
 | Product-reference revision | 0.1.0 |
 | Publication date | 2026-08-03 |
-| Firmware status | No validated example included in this edition |
+| Firmware example | ESP32-S3 PDM capture in Section 5 |

@@ -35,8 +35,8 @@ connections, and a four-position 1.0 mm-pitch connector.
 | MPN | UE0148 |
 | Hardware Revision | V1.1 artwork |
 | Microphone | TDK InvenSense ICS-41350 bottom-port digital MEMS microphone |
-| Supply Voltage | 5 V - 3.3 V |
-| Supply Current | 225uA Max |
+| Module Input Voltage | Pending board-level validation; sensor VDD is 1.65–3.63 V |
+| Module Supply Current | Pending board-level validation |
 | Sleep Current | 12uA |
 | Sensitivity | -26 dB FS |
 | Directionality | Omni |
@@ -68,6 +68,8 @@ connections, and a four-position 1.0 mm-pitch connector.
 - [Pinout Diagram](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/hardware/README.md#pinout) — artwork-backed pin table
 - [Getting Started Guide](https://wiki.uelectronics.com/wiki/devlab-pdm-ics-41350-mems-microphone-)
 - [ICS-41350 Datasheet](https://www.invensense.tdk.com/en-us/products/microphone/ics-41350)
+- [Arduino library example](software/examples/pdm/cpp_examples/AudioInputBasicRead/AudioInputBasicRead.ino)
+- [Software example instructions](software/examples/README.md)
 
 ## 📝 License
 

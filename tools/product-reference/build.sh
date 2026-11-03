@@ -15,14 +15,20 @@ if ! command -v pandoc >/dev/null 2>&1; then
 fi
 
 if command -v weasyprint >/dev/null 2>&1; then
+  PDF_RENDERER=weasyprint
   WEASYPRINT=(weasyprint)
 else
   BUNDLED_SITE_PACKAGES="$PROJECT_DIR/tools/product-reference/venv/lib/python3.12/site-packages"
   if [[ -d "$BUNDLED_SITE_PACKAGES" ]] && \
     PYTHONPATH="$BUNDLED_SITE_PACKAGES" python3 -c 'import weasyprint' 2>/dev/null; then
+    PDF_RENDERER=weasyprint
     WEASYPRINT=(env "PYTHONPATH=$BUNDLED_SITE_PACKAGES" python3 -m weasyprint)
+  elif command -v xelatex >/dev/null 2>&1; then
+    PDF_RENDERER=xelatex
+  elif command -v libreoffice >/dev/null 2>&1; then
+    PDF_RENDERER=libreoffice
   else
-    echo "Error: required command not found: weasyprint" >&2
+    echo "Error: required command not found: weasyprint, xelatex, or libreoffice" >&2
     exit 1
   fi
 fi
@@ -150,7 +156,20 @@ pandoc \
   "${CHAPTER_PATHS[@]}" \
   --output="$HTML_FILE"
 
-"${WEASYPRINT[@]}" "$HTML_FILE" "$PDF_FILE"
+if [[ "$PDF_RENDERER" == weasyprint ]]; then
+  "${WEASYPRINT[@]}" "$HTML_FILE" "$PDF_FILE"
+elif [[ "$PDF_RENDERER" == xelatex ]]; then
+  pandoc "${DOCUMENT_INPUTS[@]}" \
+    --from=markdown \
+    --standalone \
+    --metadata-file="$BOOK_FILE" \
+    --resource-path="$PROJECT_DIR" \
+    --pdf-engine=xelatex \
+    --output="$PDF_FILE"
+else
+  libreoffice "-env:UserInstallation=file://$TEMP_DIR/libreoffice-profile" \
+    --headless --convert-to pdf --outdir "$OUTPUT_DIR" "$DOCX_FILE"
+fi
 
 if [[ ! -s "$PDF_FILE" ]]; then
   echo "Error: WeasyPrint did not generate the PDF." >&2

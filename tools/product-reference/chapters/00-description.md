@@ -5,7 +5,7 @@ built around the bottom-port TDK InvenSense ICS-41350. The microphone contains
 a MEMS element, impedance-converter amplifier, and fourth-order sigma-delta
 modulator that produces a 1-bit pulse-density-modulated output.
 
-![](docs/hardware/resources/unit_top_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png){width=5.4in}
+![](hardware/resources/unit_top_v_1_2_1_devlab_pdm_ics_41350_mems_microphone.png){width=5.4in}
 
 ### **Applications**
 
@@ -21,7 +21,7 @@ modulator that produces a 1-bit pulse-density-modulated output.
 - PDM clock and data interface
 - Clock-selected low-power, standard, high-performance, and sleep modes
 - Sensor channel selection for shared-data stereo configurations
-- AP2112K-3.3TRG1 fixed 3.3 V regulator identified by the BOM
+- AP2112K-3.3TRG1 fixed 3.3 V regulator
 - Six 2.54 mm edge/header connections
 - Four-position, 1.0 mm-pitch right-angle connector
 - Orange indicator LED and two solder options shown on the V1.1 artwork
