@@ -18,7 +18,7 @@ sensing element and impedance-converter amplifier feed a fourth-order
 sigma-delta modulator, and the `DATA` pin carries its 1-bit PDM output. The
 host supplies `CLK`, then decimates and filters the PDM bitstream to obtain
 audio samples. The
-[ICS-41350 datasheet](hardware/resources/external/ds-000047-ics-41350-datasheet.pdf)
+[ICS-41350 datasheet](https://unit-electronics-mx.github.io/unit_devlab_pdm_ics_41350_mems_microphone/hardware/resources/external/ds-000047-ics-41350-datasheet.pdf)
 describes this path in its functional block diagram and “Theory of Operation. ”
 
 The microphone has no register map and no configuration bus. Only three
