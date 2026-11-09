@@ -2,9 +2,9 @@
 
 This example uses the
 [DevLab_AudioInput library](https://github.com/UNIT-Electronics-MX/unit_devlab_audioinput_library)
-to convert PDM input to signed 16-bit mono PCM on an ESP32-S3. The library
-supports ESP32-S3 hardware capture and compiles for RP2040/RP2350. The
-ESP32-C6 lacks the PDM-to-PCM peripheral used by the library's `read()` path.
+to convert PDM input to signed 16-bit mono PCM. The example is shown on an
+ESP32-S3; other hosts with a PDM receiver can use the same connections,
+adjusting the pins and sketch settings to the board.
 
 ### **5.1 Wiring and First Power-Up**
 
@@ -55,27 +55,37 @@ reports the absolute peak of each captured PCM16 block at 115200 baud:
 
 ```cpp
 #include <DevLab_AudioInput.h>
-DevLab_AudioInput microphone;
-int16_t samples[256];
+
+#if defined(ARDUINO_ARCH_RP2040)
+#define PDM_CLK_PIN  10
+#define PDM_DATA_PIN 11
+#else
+#define PDM_CLK_PIN  GPIO_NUM_2
+#define PDM_DATA_PIN GPIO_NUM_3
+#endif
+
+DevLab_AudioInput pdm;
+int16_t samples[512];
 
 void setup() {
   Serial.begin(115200);
-  if (!microphone.beginPDM(GPIO_NUM_2, GPIO_NUM_3, 48000,
-                           I2S_PDM_SLOT_RIGHT)) {
-    Serial.println("PDM initialization failed");
+  delay(1000);
+
+  if (!pdm.beginPDM(PDM_CLK_PIN, PDM_DATA_PIN)) {
+    Serial.println("PDM initialization failed.");
     while (true) delay(1000);
   }
-  delay(25);
 }
 
 void loop() {
-  size_t count = microphone.read(samples, 256);
-  if (count == 0) return;
+  size_t n = pdm.read(samples, 512);
+  if (n == 0) return;
+
+  // Peak level of the block
   int32_t peak = 0;
-  for (size_t i = 0; i < count; ++i) {
-    int32_t value = samples[i];
-    if (value < 0) value = -value;
-    if (value > peak) peak = value;
+  for (size_t i = 0; i < n; i++) {
+    int32_t v = abs(static_cast<int32_t>(samples[i]));
+    if (v > peak) peak = v;
   }
   Serial.println(peak);
 }
@@ -105,7 +115,7 @@ audio over the serial port instead of text:
 
 | Item | `SerialStream` | `ComputerAudio` |
 |---|---|---|
-| Sample rate | 48 kHz on ESP32-S3 (8 kHz on RP) | 16 kHz |
+| Sample rate | 48 kHz | 16 kHz |
 | Baud rate | 2000000 | 921600 |
 | Format | PCM16, mono, little-endian, no delimiters between samples | PCM16, mono, little-endian, no delimiters between samples |
 | Start | Sends a `RAW` line, then streams | Waits for `R`, answers with a `RAW` line, then streams |
@@ -118,21 +128,21 @@ the serial port. The receiver uses the sample rate and baud rate in the table.
 waveform; at 115200 baud it can lose samples in real time, so use
 `SerialStream` or `ComputerAudio` to capture audio.
 
-**Playing audio on a computer.** `ComputerAudio` has a companion script,
-`pc_audio.py`, in the same folder. It plays the stream through the computer's
+**Playing audio on a computer.** `ComputerAudio` has a companion Python
+script, `pc_audio.py`, in the same folder. It plays the stream through the computer's
 audio output:
 
 1. Install the dependencies with `pip install pyserial sounddevice`.
-2. Upload the `ComputerAudio` sketch to the ESP32-S3.
+2. Upload the `ComputerAudio` sketch to the host board.
 3. Close the Arduino Serial Monitor.
-4. From the sketch folder, run `python3 pc_audio.py /dev/ttyUSB0`, replacing
-   the port with the one your host board uses.
+4. From the folder that contains `pc_audio.py`, run the script with Python,
+   passing the serial port of your host board as the argument.
 
 The script sends `R` until it receives the `RAW` header and then plays the
 stream until you press Ctrl+C. The `SAMPLE_RATE` and `BAUD_RATE` values in the
-sketch and in `pc_audio.py` must match. The `--device` option selects another
-output, such as a virtual microphone sink on Linux. The list of devices comes
-from `python3 -m sounddevice`.
+sketch and in `pc_audio.py` must match. The optional `--device` argument selects
+another audio output device; the `sounddevice` module can list the devices
+available on your computer.
 
 If initialization fails, the host configuration checks PDM-to-PCM support,
 the Arduino core version, and GPIO availability. If captured samples

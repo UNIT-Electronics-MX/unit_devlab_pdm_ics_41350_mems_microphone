@@ -1,5 +1,14 @@
 ## **3 Functional Overview**
 
+The DevLab PDM ICS-41350 MEMS Microphone combines the TDK InvenSense
+ICS-41350 digital microphone with a 3.3 V regulator and a channel-select
+circuit. The microphone has no registers: the host supplies `CLK`, the
+microphone returns a 1-bit pulse-density-modulated (PDM) stream on `DATA`, and
+the `CLK` frequency alone selects the sensor mode.
+
+The module does not produce audio samples by itself. A host with a PDM
+receiver decimates and filters the bitstream into PCM audio.
+
 ### **3.1 Block Diagram** {.section-page}
 
 The block diagram shows the main functional blocks of the UE0148 module and
@@ -9,7 +18,7 @@ the signals available.
 
 The host drives `CLK`; the microphone drives `DATA` toward the host. `VIN`
 feeds a 3.3 V regulator whose output reaches the microphone through the
-`VSYS` rail. Section 2 specifies the sensor supply range.
+`VSYS` rail.
 
 ### **3.2 Microphone and PDM Signal Path**
 
@@ -63,7 +72,7 @@ board option.
 ### **3.4 Power Section**
 
 The schematic identifies U3 as an AP2112K-3.3 fixed regulator supplied from
-`VIN`. Its output passes through the Schottky diode D2 (NSR0320MW2T1G) to
+`VIN`. Its output passes through the Schottky diode D2 to
 `VSYS`, and the microphone VDD pin is on `VSYS`. The schematic annotates
 `VIN` as input only and `VSYS` as bidirectional (I/O). Both rails are
 available on the edge connections; J2 exposes `VSYS`.
@@ -97,28 +106,23 @@ into PCM; the host receiver converts the PDM stream to PCM, using dedicated
 hardware (for example, the PDM-to-PCM converter of the ESP32-S3) or software
 filtering. The audio sample rate follows from the PDM clock frequency and the
 host decimation ratio, and the PDM clock frequency also selects the sensor
-mode (Section 3.3).
+mode.
 
 ### **3.6 Library Features**
 
 The [DevLab_AudioInput](https://github.com/UNIT-Electronics-MX/unit_devlab_audioinput_library)
 library for Arduino-compatible boards captures mono audio from PDM and I²S
-microphones and returns signed 16-bit PCM samples. It is tested on ESP32-S3
-and also builds for RP2040/RP2350 through Arduino-Pico compatible cores.
-The Arduino mbed RP2040 core is not supported. The library is compiled with
-Arduino-ESP32 3.3.1 and with the UNIT Electronics Arduino-Pico core 3.1.0.
+microphones and returns signed 16-bit PCM samples.
 
-On ESP32, the PDM path uses the chip's hardware PDM-to-PCM converter, so
-`read()` on PDM requires a target that has it, such as the ESP32-S3; the
-ESP32-C6 does not include it. On RP2040/RP2350, the Arduino-Pico core
-implements PDM input with PIO. The following table summarizes the functions
-used with the UE0148.
+PDM capture depends on the PDM receiver of the host board. For example, the
+ESP32-S3 includes a hardware PDM-to-PCM converter, while the ESP32-C6 does not.
+The following table summarizes the functions used with the UE0148.
 
 | Function | Library call | Description |
 |---|---|---|
-| Initialization | `beginPDM(clkPin, dataPin, sampleRate, slot)` | Starts PDM capture on the selected pins. On ESP32, `slot` selects the receiver channel (`I2S_PDM_SLOT_LEFT` or `I2S_PDM_SLOT_RIGHT`). |
+| Initialization | `beginPDM(clkPin, dataPin, sampleRate, slot)` | Starts PDM capture on the selected pins and returns `true` on success. Returns `false` if another source is already active (call `end()` first), the board has no PDM-to-PCM converter, or initialization fails. `slot` selects the receiver channel (`I2S_PDM_SLOT_LEFT` or `I2S_PDM_SLOT_RIGHT`). |
 | Data acquisition | `read(buffer, samples, timeoutMs)` | Places mono signed 16-bit PCM samples in `buffer` and returns the number of samples read; returns 0 when no data arrives within the timeout. |
-| Gain | `setGainPercent(percent)`, `getGainPercent()` | Scales PCM samples by 50 % to 800 %; 100 % leaves them unchanged. |
+| Gain | `setGainPercent(percent)`, `getGainPercent()` | Scales PCM samples by 50 % to 800 %; values outside this range are limited to it. 100 % leaves the samples unchanged, and the scaled result is clipped to the signed 16-bit range. |
 | Source status | `source()` | Reports whether the active input is PDM, I²S, or none. |
 | Shutdown | `end()` | Stops capture so another source can start. |
 
@@ -132,35 +136,25 @@ measuring `CLK` with a logic analyzer shows the sensor mode in use.
 
 | Parameter | Default value |
 |---|---|
-| Sample rate (ESP32) | 48 kHz |
-| Receiver slot (ESP32) | Left (`I2S_PDM_SLOT_LEFT`) |
+| Sample rate | 48 kHz |
+| Receiver slot | Left (`I2S_PDM_SLOT_LEFT`) |
 | Sample format | Signed 16-bit PCM, mono |
 | Software gain | 100 % |
 | `read()` timeout | 10 ms |
 
 Use `setGainPercent()` to change the gain after `beginPDM()`.
 
-**RP2040/RP2350 differences**
-
-- `beginPDM(clkPin, dataPin, sampleRate)` takes no `slot` argument.
-- The PDM examples use 8 kHz and 16 kHz sample rates; the library accepts rates
-  up to 25 kHz.
-- The Arduino-Pico core provides one global PDM instance, so only one PDM
-  input can be active.
-
 **Example sketches**
 
 | Sketch | Source | Output |
 |---|---|---|
-| `AudioInputBasicRead` | [UE0148 repository](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/software/examples/pdm/cpp_examples/AudioInputBasicRead/AudioInputBasicRead.ino) | Absolute peak of each PCM16 block as text, 115200 baud (Section 5.2) |
+| `AudioInputBasicRead` | [UE0148 repository](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/software/examples/pdm/cpp_examples/AudioInputBasicRead/AudioInputBasicRead.ino) | Absolute peak of each PCM16 block as text, 115200 baud |
 | `LegacySerialStream` | [UE0148 repository](https://github.com/UNIT-Electronics-MX/unit_devlab_pdm_ics_41350_mems_microphone/blob/main/software/examples/pdm/cpp_examples/LegacySerialStream/LegacySerialStream.ino) | Binary PCM16 stream through the ESP32 I²S PDM driver, 2000000 baud |
 | `BasicRead` | [Library `examples/PDM`](https://github.com/UNIT-Electronics-MX/unit_devlab_audioinput_library/tree/main/examples/PDM) | Peak level as text, 115200 baud |
 | `SerialPlotter` | Library `examples/PDM` | Decimated samples as text, 115200 baud |
 | `SerialSamples` | Library `examples/PDM` | Every PCM16 sample as text, 8 kHz, 115200 baud |
-| `SerialStream` | Library `examples/PDM` | PCM16 mono, 48 kHz on ESP32-S3 or 8 kHz on RP, 2000000 baud |
+| `SerialStream` | Library `examples/PDM` | PCM16 mono, 48 kHz, 2000000 baud |
 | `ComputerAudio` | Library `examples/PDM` | PCM16 mono, 16 kHz, 921600 baud, played by `pc_audio.py` |
-
-Section 5.3 describes the streaming protocol and the computer playback script.
 
 ### **3.7 Board Topology**
 
@@ -173,7 +167,6 @@ solder options on the top and bottom sides of the board.
 ### **3.8 Electrical Schematic**
 
 The complete V1.1 schematic, covering the microphone, power supply,
-connector, channel selection, and indicator circuits, appears in Section 9.4.
-Use the original
-[schematic PDF](https://unit-electronics-mx.github.io/unit_devlab_pdm_ics_41350_mems_microphone/hardware/unit_sch_v_1_2_1_ue0148_devlab_pdm_ics_41350_mems_microphone.pdf)
-to inspect small component and net labels at full resolution.
+connector, channel selection, and indicator circuits, is available in the original
+[schematic PDF](https://unit-electronics-mx.github.io/unit_devlab_pdm_ics_41350_mems_microphone/hardware/unit_sch_v_1_2_1_ue0148_devlab_pdm_ics_41350_mems_microphone.pdf),
+which allows inspecting small component and net labels at full resolution.
